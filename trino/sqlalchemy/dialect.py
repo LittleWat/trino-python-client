@@ -280,7 +280,7 @@ class TrinoDialect(DefaultDialect):
         if not self.has_table(connection, table_name, schema):
             raise exc.NoSuchTableError(f"schema={schema}, table={table_name}")
 
-        partitioned_columns = self._get_columns(connection, f"{table_name}$partitions", schema, **kw)
+        partitioned_columns = self._get_columns(connection, table_name, schema, **kw)
         if not partitioned_columns:
             return []
         partition_index = dict(
